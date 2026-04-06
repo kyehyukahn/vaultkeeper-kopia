@@ -1,6 +1,6 @@
 {
   "name": "kopia-ui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "repository": "github:kopia/kopia",
   "dependencies": {
     "auto-launch": "^5.0.6",
