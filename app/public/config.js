@@ -68,7 +68,9 @@ function globalConfigDir() {
     // still not set, fall back to per-user config dir.
     // we use the same directory that is used by Kopia CLI.
     if (!myConfigDir) {
-      myConfigDir = path.join(Electron.app.getPath("appData"), "kopia");
+      // 환경별 분리: productName(예: VaultKeeper, VaultKeeper-dev, VaultKeeper-stg)을
+      // 소문자로 변환해 appData 하위 폴더명으로 사용. dev/stg/prod 빌드를 한 머신에 공존시키기 위함.
+      myConfigDir = path.join(Electron.app.getPath("appData"), Electron.app.getName().toLowerCase());
     }
   }
 

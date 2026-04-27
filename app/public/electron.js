@@ -42,7 +42,7 @@ import crypto from "crypto";
 // Store to save parameters
 const store = new Store();
 
-app.name = "KopiaUI";
+// app.name auto-derived from package.json `productName` (env-aware via build).
 
 let tray = null;
 let repositoryWindows = {};
@@ -98,7 +98,7 @@ function showRepoWindow(repositoryID) {
   }
 
   let windowOptions = {
-    title: "KopiaUI is Loading...",
+    title: app.getName() + " is Loading...",
     // default width
     width: 1000,
     // default height
@@ -302,7 +302,7 @@ autoUpdater.on("update-available", (a) => {
       .showMessageBox({
         buttons: ["Yes", "No"],
         message:
-          "An updated KopiaUI v" +
+          "An updated " + app.getName() + " v" +
           a.version +
           " is available.\n\nDo you want to install it now?",
       })
@@ -318,7 +318,7 @@ autoUpdater.on("update-available", (a) => {
     lastNotifiedVersion = a.version;
 
     const notification = new Notification({
-      title: "New version of KopiaUI",
+      title: "New version of " + app.getName(),
       body:
         "Version v" +
         a.version +
@@ -668,7 +668,7 @@ function updateTrayContextMenu() {
     }
   } else {
     autoUpdateMenuItems.push({
-      label: "KopiaUI is up-to-date: " + app.getVersion(),
+      label: app.getName() + " is up-to-date: " + app.getVersion(),
       enabled: false,
     });
   }

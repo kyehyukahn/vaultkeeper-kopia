@@ -4,8 +4,8 @@
 abi <abi/4.0>,
 include <tunables/global>
 
-profile kopia-ui "/opt/KopiaUI/kopia-ui" flags=(unconfined) {
+profile vaultkeeper-ui "/opt/VaultKeeper/vaultkeeper-ui" flags=(unconfined) {
   userns,
 
-  include if exists <local/kopia-ui>
+  include if exists <local/vaultkeeper-ui>
 }
