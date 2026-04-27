@@ -1,7 +1,8 @@
 {
-  "name": "kopia-ui",
+  "name": "vaultkeeper-ui",
+  "productName": "VaultKeeper",
   "version": "0.1.0",
-  "repository": "github:kopia/kopia",
+  "repository": "github:kyehyukahn/vaultkeeper-kopia",
   "dependencies": {
     "auto-launch": "^5.0.6",
     "electron-log": "^5.4.3",
@@ -17,8 +18,8 @@
     "name": "Kopia Authors"
   },
   "build": {
-    "productName": "KopiaUI",
-    "appId": "io.kopia.ui",
+    "productName": "VaultKeeper",
+    "appId": "com.bsquarelab.vaultkeeper",
     "publish": [
       {
         "provider": "github",
@@ -45,7 +46,7 @@
     ],
     "directories": {
       "buildResources": "assets",
-      "output": "../dist/kopia-ui"
+      "output": "../dist/vaultkeeper-ui"
     },
     "nsis": {
       "oneClick": false,
@@ -113,13 +114,13 @@
     "afterSign": "notarize.mjs"
   },
   "deb": {
-    "appArmorProfile": "kopia-ui.apparmor"
+    "appArmorProfile": "vaultkeeper-ui.apparmor"
   },
   "rpm": {
-    "appArmorProfile": "kopia-ui.apparmor"
+    "appArmorProfile": "vaultkeeper-ui.apparmor"
   },
   "AppImage": {
-    "appArmorProfile": "kopia-ui.apparmor"
+    "appArmorProfile": "vaultkeeper-ui.apparmor"
   },
   "devDependencies": {
     "@electron/notarize": "^3.1.1",
