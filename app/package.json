@@ -139,19 +139,17 @@
   "license": "Apache-2.0",
   "main": "public/electron.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build-html": "react-scripts build",
-    "e2e": "playwright test",
-    "eject": "react-scripts eject",
+    "start": "electron .",
+    "dev": "electron .",
     "start-electron": "electron .",
+    "start-electron-prebuilt": "ELECTRON_IS_DEV=0 electron .",
     "build-electron": "electron-builder",
     "build-electron-windows": "electron-builder -w --x64",
     "build-electron-linux": "electron-builder -l",
     "build-electron-dir": "electron-builder --dir",
-    "start-electron-prebuilt": "ELECTRON_IS_DEV=0 electron .",
+    "e2e": "playwright test",
     "prettier": "prettier --write .",
-    "prettier:check": "prettier --check .",
-    "dev": "electron ."
+    "prettier:check": "prettier --check ."
   },
   "eslintConfig": {
     "extends": "react-app"
