@@ -680,8 +680,13 @@ function updateTrayContextMenu() {
     .concat([
       { type: "separator" },
       {
+        // VaultKeeper assigns a single storageConfig per client by design,
+        // so multi-repository is not supported. Item kept visible (greyed)
+        // for affordance — users coming from upstream Kopia know what's
+        // missing rather than wondering where it went.
         label: "Connect To Another Repository...",
-        click: addAnotherRepository,
+        enabled: false,
+        toolTip: "Not available in VaultKeeper (single-repository per client)",
       },
       { type: "separator" },
       { label: "Check For Updates Now", click: checkForUpdatesNow },
