@@ -116,10 +116,12 @@
     "afterSign": "notarize.mjs"
   },
   "deb": {
-    "appArmorProfile": "vaultkeeper-ui.apparmor"
+    "appArmorProfile": "vaultkeeper-ui.apparmor",
+    "artifactName": "${productName}-${version}-${arch}.${ext}"
   },
   "rpm": {
-    "appArmorProfile": "vaultkeeper-ui.apparmor"
+    "appArmorProfile": "vaultkeeper-ui.apparmor",
+    "artifactName": "${productName}-${version}-${arch}.${ext}"
   },
   "AppImage": {
     "appArmorProfile": "vaultkeeper-ui.apparmor"
