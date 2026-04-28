@@ -22,9 +22,8 @@
     "appId": "com.bsquarelab.vaultkeeper",
     "publish": [
       {
-        "provider": "github",
-        "vPrefixedTagName": true,
-        "releaseType": "release"
+        "provider": "generic",
+        "url": "__VAULTKEEPER_UPDATE_URL__"
       }
     ],
     "files": [
@@ -55,7 +54,10 @@
     },
     "snap": {
       "publish": [
-        "github"
+        {
+          "provider": "generic",
+          "url": "__VAULTKEEPER_UPDATE_URL__"
+        }
       ]
     },
     "win": {

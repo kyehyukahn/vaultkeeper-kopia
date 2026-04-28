@@ -279,6 +279,12 @@ let updateDownloadStatusInfo = "";
 let updateFailed = false;
 let checkForUpdatesTriggeredFromUI = false;
 
+// VaultKeeper API key state — set/cleared via IPC from htmlui (preload bridge).
+// electron-updater 가 backend 의 ApiKeyGuard 보호된 update feed 를 호출해야
+// 하므로 apiKey 가 도착하기 전에는 자동/수동 체크 모두 보류한다.
+let currentApiKey = null;
+let startupCheckDone = false;
+
 // set this environment variable when developing
 // to allow offering downgrade to the latest released version.
 autoUpdater.allowDowngrade = process.env["KOPIA_UI_ALLOW_DOWNGRADE"] == "1";
@@ -389,12 +395,35 @@ autoUpdater.on("error", (a) => {
 });
 
 function checkForUpdates() {
+  if (!currentApiKey) {
+    log.info("checkForUpdates skipped: no API key (not logged in to VaultKeeper)");
+    return;
+  }
   updateDownloadStatusInfo = "Checking for update...";
   updateAvailableInfo = null;
   updateTrayContextMenu();
 
   autoUpdater.checkForUpdates();
 }
+
+ipcMain.on("vaultkeeper:set-api-key", (_event, apiKey) => {
+  if (typeof apiKey !== "string" || !apiKey) return;
+  currentApiKey = apiKey;
+  autoUpdater.requestHeaders = { "X-API-Key": apiKey };
+  updateTrayContextMenu();
+  log.info("VaultKeeper API key received from renderer");
+  if (!startupCheckDone) {
+    startupCheckDone = true;
+    checkForUpdates();
+  }
+});
+
+ipcMain.on("vaultkeeper:clear-api-key", () => {
+  currentApiKey = null;
+  autoUpdater.requestHeaders = undefined;
+  updateTrayContextMenu();
+  log.info("VaultKeeper API key cleared");
+});
 
 function checkForUpdatesNow() {
   checkForUpdatesTriggeredFromUI = true;
@@ -689,7 +718,14 @@ function updateTrayContextMenu() {
         toolTip: "Not available in VaultKeeper (single-repository per client)",
       },
       { type: "separator" },
-      { label: "Check For Updates Now", click: checkForUpdatesNow },
+      {
+        label: "Check For Updates Now",
+        click: checkForUpdatesNow,
+        enabled: !!currentApiKey,
+        toolTip: currentApiKey
+          ? undefined
+          : "Login to VaultKeeper to enable update checks",
+      },
     ])
     .concat(autoUpdateMenuItems)
     .concat([
