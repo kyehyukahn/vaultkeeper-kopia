@@ -122,7 +122,7 @@
       "appArmorProfile": "vaultkeeper-ui.apparmor",
       "artifactName": "${productName}-${version}-${arch}.${ext}"
     },
-    "AppImage": {
+    "appImage": {
       "appArmorProfile": "vaultkeeper-ui.apparmor"
     }
   },
