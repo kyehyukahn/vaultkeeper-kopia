@@ -113,18 +113,18 @@
         }
       ]
     },
-    "afterSign": "notarize.mjs"
-  },
-  "deb": {
-    "appArmorProfile": "vaultkeeper-ui.apparmor",
-    "artifactName": "${productName}-${version}-${arch}.${ext}"
-  },
-  "rpm": {
-    "appArmorProfile": "vaultkeeper-ui.apparmor",
-    "artifactName": "${productName}-${version}-${arch}.${ext}"
-  },
-  "AppImage": {
-    "appArmorProfile": "vaultkeeper-ui.apparmor"
+    "afterSign": "notarize.mjs",
+    "deb": {
+      "appArmorProfile": "vaultkeeper-ui.apparmor",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "rpm": {
+      "appArmorProfile": "vaultkeeper-ui.apparmor",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "AppImage": {
+      "appArmorProfile": "vaultkeeper-ui.apparmor"
+    }
   },
   "devDependencies": {
     "@electron/notarize": "^3.1.1",
