@@ -121,9 +121,6 @@
     "rpm": {
       "appArmorProfile": "vaultkeeper-ui.apparmor",
       "artifactName": "${productName}-${version}-${arch}.${ext}"
-    },
-    "appImage": {
-      "appArmorProfile": "vaultkeeper-ui.apparmor"
     }
   },
   "devDependencies": {
