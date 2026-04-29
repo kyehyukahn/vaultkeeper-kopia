@@ -1,7 +1,7 @@
 {
   "name": "vaultkeeper-ui",
   "productName": "VaultKeeper",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": "github:kyehyukahn/vaultkeeper-kopia",
   "dependencies": {
     "auto-launch": "^5.0.6",
