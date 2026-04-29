@@ -540,7 +540,8 @@ app.on("ready", () => {
     ),
   );
 
-  tray.setToolTip("Kopia");
+  // env-aware 툴팁 — productName 그대로 표시 (예: VaultKeeper / VaultKeeper-dev / VaultKeeper-stg / VaultKeeper-local)
+  tray.setToolTip(app.getName());
 
   // hooks exposed to tests
   if (process.env["KOPIA_UI_TESTING"]) {
